@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIC NG MGA POGI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('background/images.jfif'); /* Path to your background image */
+            background-size: auto; /* Cover the entire viewport */
+            background-position: center; /* Center the image */
+            background-attachment: fixed; /* Keep the background fixed during scrolling */
+            color: #fff; /* Text color for better readability */
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            padding: 20px;
+            margin: 0;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background for readability */
+            border-bottom: 2px solid #ddd;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Adds shadow to the header */
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px; /* Optional: Limits the width of the gallery */
+            margin: 0 auto; /* Centers the gallery horizontally */
+        }
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slightly more pronounced shadow */
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background for readability */
+        }
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        .caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.6); /* Slightly darker background for better text contrast */
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            font-size: 16px; /* Slightly larger font size */
+            border-top: 2px solid #ddd;
+            cursor: pointer;
+            z-index: 1; /* Ensures caption is on top of the image */
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            overflow: auto;
+        }
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            background-color: #ffffff; /* Optional: Background color for modal content */
+        }
+        .modal-content img {
+            width: 100%;
+            height: auto;
+        }
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 25px;
+            color: #fff;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close:hover,
+        .close:focus {
+            color: #ddd;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<h1>POGI SA FRANCIS</h1>
+<div class="gallery">
+    <div class="gallery-item">
+        <img src="gallery/images1.jpg" alt="Image 1">
+        <div class="caption" onclick="openModal('gallery/images1.jpg')">JASPER</div>
+    </div>
+    <div class="gallery-item">
+        <img src="gallery/images2.jpg" alt="Image 2">
+        <div class="caption" onclick="openModal('gallery/images2.jpg')">DARCY</div>
+    </div>
+    <div class="gallery-item">
+        <img src="gallery/images3.jpg" alt="Image 3">
+        <div class="caption" onclick="openModal('gallery/images3.jpg')">BIEN</div>
+    </div>
+    <div class="gallery-item">
+        <img src="gallery/images4.jpg" alt="Image 4">
+        <div class="caption" onclick="openModal('gallery/images4.jpg')">ZETH</div>
+    </div>
+    <div class="gallery-item">
+        <img src="gallery/images5.jpg" alt="Image 4">
+        <div class="caption" onclick="openModal('gallery/images5.jpg')">GELLO</div>
+    </div>
+    <div class="gallery-item">
+        <img src="gallery/images6.jpg" alt="Image 4">
+        <div class="caption" onclick="openModal('gallery/images6.jpg')">VAPERIST</div>
+    </div>
+    <div class="gallery-item">
+        <img src="gallery/images7.jfif" alt="Image 4">
+        <div class="caption" onclick="openModal('gallery/images7.jfif')">RONUEL GENGGENG</div>
+    </div>
+    <div class="gallery-item">
+        <img src="gallery/images8.jpg" alt="Image 4">
+        <div class="caption" onclick="openModal('gallery/images8.jpg')">RONUEL DRUG ADDICT</div>
+    </div>
+    <div class="gallery-item">
+        <img src="gallery/images9.jpg" alt="Image 4">
+        <div class="caption" onclick="openModal('gallery/images9.jpg')">PANAHONG KUPAL PA SYA</div>
+    </div>
+    <div class="gallery-item">
+        <img src="gallery/images10.jpg" alt="Image 4">
+        <div class="caption" onclick="openModal('gallery/images10.jpg')">ANG NAG DALA SA ST.FRANCIS</div>
+    </div>
+</div>
+
+<div id="myModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <div class="modal-content">
+        <img id="modalImg" src="" alt="Modal Image">
+    </div>
+</div>
+
+<script>
+    function openModal(imageSrc) {
+        document.getElementById('modalImg').src = imageSrc;
+        document.getElementById('myModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+        document.getElementById('myModal').style.display = 'none';
+    }
+
+    //Close modal when clicking outside of the modal content
+    window.onclick = function(event) {
+        if (event.target === document.getElementById('myModal')) {
+            closeModal();
+        }
+    }
+</script>
+<footer>
+    Created by: <span style="color: #2f00ff;">KUSH</span>
+</footer>
+</body>
+</html>
